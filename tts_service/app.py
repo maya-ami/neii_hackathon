@@ -17,7 +17,7 @@ def say():
     voice = request.args.get('voice')
     speed = request.args.get('speed')
     voice = "-p anna" if voice is None else "-p %s" % (voice)
-    speed = "1.3" if speed is None else "%s" % (speed)
+    speed = "1" if speed is None else "%s" % (speed)
     cmd = "echo %s | RHVoice-test %s -o %s.wav && sox %s.wav %s.wav tempo %s" % (quote(text), voice, file_path, file_path, file_path+'_speed', speed)
     subprocess.call([cmd], shell=True)
     @after_this_request
@@ -27,7 +27,7 @@ def say():
     # return send_from_directory(data_path, "%s.wav" % (file_name+"_speed"))
     with open("%s.wav" % (file_path+"_speed"), "rb") as f:
         data = f.read()
-    
+
     return data
 
 if __name__ == "__main__":
