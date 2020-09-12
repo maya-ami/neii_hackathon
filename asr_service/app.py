@@ -31,14 +31,15 @@ async def fetch(uri, wavf):
     return result
 
 
+
 @app.route('/recognize_wav')
 def recognize_wav():
-    with open("decoder-test.wav", "rb") as wf:
+    with open("question.wav", "rb") as wf:
         wf.read()
     asyncio.set_event_loop(asyncio.SelectorEventLoop())
-    result = asyncio.get_event_loop().run_until_complete(fetch('ws://localhost:2700', "decoder-test.wav"))
-
-    result_dict = ast.literal_eval(result[-1])
+    result = asyncio.get_event_loop().run_until_complete(fetch('ws://localhost:2700', "question.wav"))
+    print(result)
+    result_dict = ast.literal_eval(result[-5])
     return result_dict['text']
 
 if __name__ == '__main__':

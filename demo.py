@@ -5,15 +5,23 @@ import sys
 import sqlite3
 sys.path.append("db")
 import answer_storage2
+from cont_asr import listen
 
 """
 Временный скрипт для демо прототипа.
 """
 
+# Слушаем пользователя и сохраняем речь в wav
+listen()
+
+# Отправляем wav файл на ASR сервис
+q = requests.get("http://0.0.0.0:5000/recognize_wav")
+print(q.text)
+
 db = answer_storage2.SQLStorage()
 
 # запрос пользователь на NLP сервис
-r = requests.get('http://0.0.0.0:8888/chat?text={}'.format(sys.argv[1]))
+r = requests.get('http://0.0.0.0:8888/chat?text={}'.format(q.text))
 nlp_response = ast.literal_eval(r.text)
 
 # NLU модель определила проблему пользователя - достаем ответ из БД
