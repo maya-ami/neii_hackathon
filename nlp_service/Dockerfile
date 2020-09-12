@@ -4,7 +4,6 @@ RUN apt-get update -qq \
  && apt-get install -y --no-install-recommends \
  python python-pip python-setuptools
 
-RUN pip install pika
 RUN pip install rasa==1.6.1
 RUN pip uninstall -y tensorflow
 RUN pip install tensorflow==1.15.0
@@ -19,4 +18,3 @@ COPY ./models /app/models/
 RUN ls -R
 
 CMD ["python3","app.py"]
-
