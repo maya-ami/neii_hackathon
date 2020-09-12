@@ -24,7 +24,11 @@ def say():
     def remove_file(response):
         os.remove("%s.wav" % (file_path+"_speed"))
         return response
-    return send_from_directory(data_path, "%s.wav" % (file_name+"_speed"))
+    # return send_from_directory(data_path, "%s.wav" % (file_name+"_speed"))
+    with open("%s.wav" % (file_path+"_speed"), "rb") as f:
+        data = f.read()
+    
+    return data
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5555)
