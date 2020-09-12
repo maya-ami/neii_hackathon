@@ -1,0 +1,16 @@
+# Configuration for Rasa NLU.
+# https://rasa.com/docs/rasa/nlu/components/
+language: ru
+pipeline: supervised_embeddings
+
+# Configuration for Rasa Core.
+# https://rasa.com/docs/rasa/core/policies/
+policies:
+  - name: FormPolicy
+  - name: MemoizationPolicy
+    max_history: 5
+  - name: KerasPolicy
+    epochs: 100
+    batch_size: 20
+    validation_split: 0.2
+  # - name: MappingPolicy

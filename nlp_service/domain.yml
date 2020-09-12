@@ -1,0 +1,53 @@
+slots:
+  city:
+      type: unfeaturized
+
+entities:
+  - city
+
+intents:
+  - greet
+  - howareyou
+  - goodbye
+  - negation
+  - birth
+  - matcapital
+  - child_monthly
+  - veteran_compensation
+  - veteran_monthly
+  - disabled_compensation
+  - disabled_transport
+  - retired_transport
+  - retired_older
+  - living_area
+
+actions:
+  - utter_greet
+  - utter_happy
+  - utter_goodbye
+  - utter_ask_city
+  - utter_additional_help
+  - utter_help
+
+templates:
+  utter_greet:
+  - text: "Привет! Нужна помощь?"
+
+  utter_happy:
+  - text: "Прекрасно!"
+
+  utter_additional_help:
+  - text: "Могу ещё чем-нибудь помочь?"
+
+  utter_goodbye:
+  - text: "Пока!"
+
+  utter_ask_city:
+  - text: "В каком населенном пункте вы проживаете?"
+
+  utter_help:
+  - text: "Вам положены следующие льготы."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
