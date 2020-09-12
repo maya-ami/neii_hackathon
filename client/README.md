@@ -2,23 +2,10 @@
 
 ## Project setup
 ```
-yarn install
-```
+нужно чтоб был node.js
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+для подтягивания зависимостей
+npm install
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+для запуска выполнить в папке проекта
+npm run serve
