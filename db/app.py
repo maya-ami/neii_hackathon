@@ -15,7 +15,7 @@ app = Flask(__name__, static_url_path='')
 
 
 def tuple_to_dict(tup):
-    result = {'docs' : tup[1], 'answer' : tup[2] };
+    result = {'answer' : tup[1]};
     return result;
 
 def get_db():
