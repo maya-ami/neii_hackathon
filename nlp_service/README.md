@@ -9,5 +9,5 @@
     ```
 
 - Параметры
-    text - строка, распознанная [vosk](https://alphacephei.com/vosk/server)
-    результат - ключевое слово для поиска в БД
+    text - строка, распознанная [vosk](https://alphacephei.com/vosk/server)    
+    Результат - ключевое слово для поиска в БД
