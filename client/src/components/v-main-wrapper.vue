@@ -137,8 +137,8 @@ export default {
       }
     },
     async setMessages(blob) {
-      const messages = await uploadFileRequest(blob);
-      this.pushMessage(messages);
+      const result = await uploadFileRequest(blob);
+      this.pushMessage(result.messages);
       this.scrollToEnd();
     },
   },
