@@ -9,6 +9,6 @@
     http://localhost:5555/say?text=Привет&speed=1
     ```
 - Параметры 
--text - текст для синтеза
--voice - имя голоса RHVoice
--speed - скорость воспроизведения Wav файла
+    - text - текст для синтеза
+    - voice - имя голоса RHVoice
+    - speed - скорость воспроизведения Wav файла
