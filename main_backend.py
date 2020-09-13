@@ -87,9 +87,7 @@ def sound():
     m = MultipartEncoder(fields={ 'messages': json.dumps(dict1), 'files': ("sound.wav", s.content, 'sound.wav') })
     return (m.to_string(), {'Content-Type': m.content_type})
 
-def speak():
-    cmd = "play answer.wav"
-    subprocess.call([cmd], shell=True)
+
 
 @app.route('/text', methods=['POST'])
 # @cross_origin(supports_credentials=True)
@@ -109,11 +107,11 @@ def text():
 
     # # возвращаем сгенерированный голосовой ответ на фронтенд
     # return {s.content}
-    # with open('answer.wav', 'wb') as f:
-    #     for i in s:
-    #         f.write(i)
-    # cmd = "play answer.wav"
-    # subprocess.call([cmd], shell=True)
+    with open('answer.wav', 'wb') as f:
+        for i in s:
+            f.write(i)
+    cmd = "play answer.wav"
+    subprocess.call([cmd], shell=True)
 
     # dict1 = [{"text": text, "isBot": True}]
     dict1 = [{"text": life_situation[0][0], "isBot": True}]
