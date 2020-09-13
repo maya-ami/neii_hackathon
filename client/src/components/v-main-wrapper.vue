@@ -4,7 +4,9 @@
       <div class="row">
         <div class="col"></div>
         <div class="col-6">
-          <b-jumbotron header="Введите текст" lead="Помощник по вводу текста">
+          <b-jumbotron>
+            <h3 class="display-4">Введите текст</h3>
+            <p>Помощник по вводу текста</p>
             <b-list-group v-if="messages">
               <b-list-group-item v-for="(msg, index) of messages" :key="index">
                 <p :class="{ 'text-left': msg.isBot, 'text-right': !msg.isBot }">{{msg.text}}</p>
@@ -34,22 +36,20 @@
 <script>
 import vRecorderAudio from "./v-recorder-audio.vue";
 
-// import axios from "axios";
-
-// function playByteArray(byteArray) {
-//   const arrayBuffer = new ArrayBuffer(byteArray.length);
-//   const bufferView = new Uint8Array(arrayBuffer);
-//   for (let i = 0; i < byteArray.length; i++) {
-//     bufferView[i] = byteArray[i];
-//   }
-//   const context = new AudioContext();
-//   context.decodeAudioData(arrayBuffer, (buffer) => {
-//     const source = context.createBufferSource();
-//     source.buffer = buffer;
-//     source.connect(context.destination);
-//     source.start(0);
-//   });
-// }
+function playByteArray(byteArray) {
+  const arrayBuffer = new ArrayBuffer(byteArray.length);
+  const bufferView = new Uint8Array(arrayBuffer);
+  for (let i = 0; i < byteArray.length; i++) {
+    bufferView[i] = byteArray[i];
+  }
+  const context = new AudioContext();
+  context.decodeAudioData(arrayBuffer, (buffer) => {
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.start(0);
+  });
+}
 
 async function sendPost(path, formData) {
   const response = await fetch(`http://localhost:8083/${path}`, {
@@ -74,6 +74,12 @@ async function uploadTextRequest(text) {
   }
   const result = await sendPost("text", formData);
   console.log(result);
+  if (result["messages"]) {
+    result["messages"] = JSON.parse(result["messages"]);
+  }
+  document.aa = result;
+  document.aaa = (b) => playByteArray(b);
+  console.log(result["messages"], result);
   return result;
 }
 
@@ -82,7 +88,10 @@ async function uploadFileRequest(file) {
   const filename = new Date().toISOString();
   fileData.append("file", file, filename);
   const result = await sendPost("sound", fileData);
-  console.log(result);
+  if (result["messages"]) {
+    result["messages"] = JSON.parse(result["messages"]);
+  }
+  console.log(result["messages"], result);
   return result;
 }
 
@@ -94,21 +103,13 @@ export default {
     return {
       title: "Main wrapper",
       text: "",
-      messages: [
-        { text: "Привет человек!", isBot: true },
-        { text: "Привет Бот!", isBot: false },
-        { text: "Как дела?", isBot: true },
-        { text: "Нормально!", isBot: false },
-        { text: "Привет человек!", isBot: true },
-        { text: "Привет Бот!", isBot: false },
-        { text: "Как дела?", isBot: true },
-        { text: "Нормально!", isBot: false },
-      ],
+      messages: [],
     };
   },
   computed: {},
   methods: {
     pushMessage(messages) {
+      console.log(messages);
       if (messages && messages.length) {
         messages.forEach((it) => {
           console.log(it);
@@ -116,17 +117,29 @@ export default {
         });
       }
     },
+    scrollToEnd() {
+      const container = this.$el.querySelector(".list-group");
+      if (container) {
+        setTimeout(() => {
+          const y = container.scrollHeight + 1000;
+          container.scrollTo(0, y);
+        }, 1000);
+      }
+    },
     async sendMessage() {
       if (this.text) {
+        this.pushMessage([{ text: this.text, isBot: false }]);
         console.log(this.text);
-        const messages = await uploadTextRequest(this.text);
-        this.pushMessage(messages);
+        const result = await uploadTextRequest(this.text);
+        this.pushMessage(result.messages);
+        this.scrollToEnd();
         this.text = "";
       }
     },
     async setMessages(blob) {
       const messages = await uploadFileRequest(blob);
       this.pushMessage(messages);
+      this.scrollToEnd();
     },
   },
 };
@@ -145,5 +158,8 @@ export default {
 }
 .jumbotron {
   background-color: azure;
+}
+.jumbotron header {
+  background-color: red;
 }
 </style>
