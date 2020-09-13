@@ -34,24 +34,56 @@
 <script>
 import vRecorderAudio from "./v-recorder-audio.vue";
 
-import axios from "axios";
-async function sendPost(path, data) {
-  console.log(data);
-  const res = await axios.post(`http://localhost:8083/${path}`, data, {
-    timeout: 30000,
+// import axios from "axios";
+
+// function playByteArray(byteArray) {
+//   const arrayBuffer = new ArrayBuffer(byteArray.length);
+//   const bufferView = new Uint8Array(arrayBuffer);
+//   for (let i = 0; i < byteArray.length; i++) {
+//     bufferView[i] = byteArray[i];
+//   }
+//   const context = new AudioContext();
+//   context.decodeAudioData(arrayBuffer, (buffer) => {
+//     const source = context.createBufferSource();
+//     source.buffer = buffer;
+//     source.connect(context.destination);
+//     source.start(0);
+//   });
+// }
+
+async function sendPost(path, formData) {
+  const response = await fetch(`http://localhost:8083/${path}`, {
+    method: "POST",
+    body: formData,
   });
-  return res.data;
+  console.log("Good");
+  const result = await response.formData();
+  const obj = {};
+  for (var pair of result.entries()) {
+    obj[pair[0]] = pair[1];
+  }
+  return obj;
 }
 
 async function uploadTextRequest(text) {
-  return sendPost("text", { text });
+  const data = { text };
+  const formData = new FormData();
+
+  for (const name in data) {
+    formData.append(name, data[name]);
+  }
+  const result = await sendPost("text", formData);
+  console.log(result);
+  return result;
 }
 
 async function uploadFileRequest(file) {
   const fileData = new FormData();
   const filename = new Date().toISOString();
   fileData.append("file", file, filename);
-  return sendPost("sound", fileData);
+  const result = await sendPost("sound", fileData);
+  console.log(result);
+  return result;
 }
 
 export default {
@@ -78,7 +110,10 @@ export default {
   methods: {
     pushMessage(messages) {
       if (messages && messages.length) {
-        messages.forEach((it) => this.messages.push(it));
+        messages.forEach((it) => {
+          console.log(it);
+          this.messages.push(it);
+        });
       }
     },
     async sendMessage() {
