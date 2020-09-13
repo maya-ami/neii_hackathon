@@ -32,12 +32,13 @@
 
 1. Скачивание
 
-1a. `git clone https://github.com/maya-ami/neii_hackathon`
-1b. Также вы можете скачать репозиторий в виде архива и распаковать локально.
+ 1a. `git clone https://github.com/maya-ami/neii_hackathon`
+ 
+ 1b. Также вы можете скачать репозиторий в виде архива и распаковать локально.
 
 2. Установка зависимостей
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 *NB*: requirements.txt might be not full!
 
