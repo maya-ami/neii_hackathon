@@ -11,7 +11,10 @@ from flask import Flask, jsonify, Response, request
 from flask_cors import CORS, cross_origin
 
 """
-Бекенд, связывающий 3 микросервиса (ASR, NLP, STT), с JS фронтендом
+Бекенд, связывающий 3 микросервиса (ASR, NLP, STT), с JS фронтендом.
+Приложение использует два метода:
+    - sound активируется при голосовом обращении к чат-боту.
+    - text активируется при отправки текстового сообщения в форму чат-бота.
 """
 
 app = Flask(__name__)
