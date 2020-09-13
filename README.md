@@ -30,37 +30,37 @@
 
 Представленное решение разработано под ОС Linux.
 
-1. Скачивание
+## 1. Скачивание
 
  1a. `git clone https://github.com/maya-ami/neii_hackathon`
  
  1b. Также вы можете скачать репозиторий в виде архива и распаковать локально.
 
-2. Установка зависимостей
+## 2. Установка зависимостей
 
 `pip install -r requirements.txt`
 
 *NB*: requirements.txt might be not full!
 
-3. Установка Node.js и npm
+## 3. Установка Node.js и npm
 
 ```
 sudo apt-get install nodejs
 sudo apt-get install npm
 ```
-4. Запуск микросервисов
+## 4. Запуск микросервисов
 
 Инструкция по установки Docker, необходимого для работы микросервисов - [здесь](https://docs.docker.com/engine/install/).
 Подробная информация о создании Docker образа и его запуске представлена в README.md каждого микросервиса.
 
-5. Запуск бекенда
+## 5. Запуск бекенда
 
 `python3 main_backend.py`
 
-6. Запуск фронтенда
+## 6. Запуск фронтенда
 ```
 cd client
 npm install
 npm run serve
 ```
-7. Голосовой помощник доступен в браузере по адресу http://localhost:8080/
+## 7. Голосовой помощник доступен в браузере по адресу http://localhost:8080/
