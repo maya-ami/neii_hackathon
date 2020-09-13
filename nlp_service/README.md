@@ -1,6 +1,6 @@
 - Запуск
     ```Shell
-    docker build -t nlu1.0
+    docker build -t nlu1.0 .
     docker run -d -p 8888:8888 nlu1.0
     ```
 - Пример
