@@ -4,12 +4,13 @@
       <div class="row">
         <div class="col"></div>
         <div class="col-6">
-          <b-jumbotron>
+          <b-jumbotron class="pt-4 pb-4">
             <h3 class="display-4">Sovet</h3>
             <p>Поможет Вам узнать о мерах социальной поддержки</p>
             <b-list-group v-if="messages">
               <b-list-group-item v-for="(msg, index) of messages" :key="index">
                 <p :class="{ 'text-left': msg.isBot, 'text-right': !msg.isBot }">{{msg.text}}</p>
+                <audio :src="audio" autoplay="autoplay" />
               </b-list-group-item>
             </b-list-group>
             <hr class="my-4" />
@@ -17,13 +18,13 @@
               <div class="col-sm-8">
                 <b-form-input v-model="text" placeholder="Введите текст запроса"></b-form-input>
               </div>
-              <b-button variant="primary" href="#" @click="sendMessage">Отправить текст</b-button>
+              <b-button variant="primary" href="#" @click="sendTextMessage">Отправить текст</b-button>
             </div>
             <hr class="my-4" />
             <div class="row">
               <div class="col-sm-5"></div>
               <div class="col-sm-1">
-                <vRecorderAudio @receivingMessage="setMessages" />
+                <vRecorderAudio @receivingMessage="sendSoundMessage" />
               </div>
             </div>
           </b-jumbotron>
@@ -36,27 +37,11 @@
 <script>
 import vRecorderAudio from "./v-recorder-audio.vue";
 
-function playByteArray(byteArray) {
-  const arrayBuffer = new ArrayBuffer(byteArray.length);
-  const bufferView = new Uint8Array(arrayBuffer);
-  for (let i = 0; i < byteArray.length; i++) {
-    bufferView[i] = byteArray[i];
-  }
-  const context = new AudioContext();
-  context.decodeAudioData(arrayBuffer, (buffer) => {
-    const source = context.createBufferSource();
-    source.buffer = buffer;
-    source.connect(context.destination);
-    source.start(0);
-  });
-}
-
 async function sendPost(path, formData) {
   const response = await fetch(`http://localhost:8083/${path}`, {
     method: "POST",
     body: formData,
   });
-  console.log("Good");
   const result = await response.formData();
   const obj = {};
   for (var pair of result.entries()) {
@@ -73,13 +58,9 @@ async function uploadTextRequest(text) {
     formData.append(name, data[name]);
   }
   const result = await sendPost("text", formData);
-  console.log(result);
   if (result["messages"]) {
     result["messages"] = JSON.parse(result["messages"]);
   }
-  document.aa = result;
-  document.aaa = (b) => playByteArray(b);
-  console.log(result["messages"], result);
   return result;
 }
 
@@ -91,7 +72,6 @@ async function uploadFileRequest(file) {
   if (result["messages"]) {
     result["messages"] = JSON.parse(result["messages"]);
   }
-  console.log(result["messages"], result);
   return result;
 }
 
@@ -104,17 +84,14 @@ export default {
       title: "Main wrapper",
       text: "",
       messages: [],
+      audio: null,
     };
   },
   computed: {},
   methods: {
     pushMessage(messages) {
-      console.log(messages);
       if (messages && messages.length) {
-        messages.forEach((it) => {
-          console.log(it);
-          this.messages.push(it);
-        });
+        messages.forEach((it) => this.messages.push(it));
       }
     },
     scrollToEnd() {
@@ -123,21 +100,28 @@ export default {
         setTimeout(() => {
           const y = container.scrollHeight + 1000;
           container.scrollTo(0, y);
-        }, 1000);
+        }, 100);
       }
     },
-    async sendMessage() {
+    setAudio({ files } = {}) {
+      if (files) {
+        const url = URL.createObjectURL(files);
+        this.audio = url;
+      }
+    },
+    async sendTextMessage() {
       if (this.text) {
         this.pushMessage([{ text: this.text, isBot: false }]);
-        console.log(this.text);
         const result = await uploadTextRequest(this.text);
+        this.setAudio(result);
         this.pushMessage(result.messages);
         this.scrollToEnd();
         this.text = "";
       }
     },
-    async setMessages(blob) {
+    async sendSoundMessage(blob) {
       const result = await uploadFileRequest(blob);
+      this.setAudio(result);
       this.pushMessage(result.messages);
       this.scrollToEnd();
     },
@@ -158,8 +142,6 @@ export default {
 }
 .jumbotron {
   background-color: azure;
-}
-.jumbotron header {
-  background-color: red;
+  padding: 2rem 1rem;
 }
 </style>
