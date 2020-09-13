@@ -63,3 +63,4 @@ cd client
 npm install
 npm run serve
 ```
+7. Голосовой помощник доступен в браузере по адресу http://localhost:8080/
