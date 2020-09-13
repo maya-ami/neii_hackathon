@@ -10,4 +10,4 @@
 
 ## Запуск
 
-python3 detect_document_changes.py document_in_local_db.txt updated_document.txt
+python3 detect_document_changes.py local.txt updated.txt
