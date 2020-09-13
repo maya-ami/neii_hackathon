@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 COPY app.py /app/
 
-COPY documents_v2.db /app/
+COPY update_documents.db /app/
 
 RUN pip install -r requirements.txt
 
