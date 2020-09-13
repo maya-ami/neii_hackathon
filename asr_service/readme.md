@@ -9,5 +9,4 @@
     sudo docker run --publish 5000:5000 --name asr asr:1.0
     ```
 - Пример
-
-```http://0.0.0.0:5000/recognize_wav```
+    ```http://0.0.0.0:5000/recognize_wav```
