@@ -5,8 +5,8 @@
         <div class="col"></div>
         <div class="col-6">
           <b-jumbotron>
-            <h3 class="display-4">Введите текст</h3>
-            <p>Помощник по вводу текста</p>
+            <h3 class="display-4">Sovet</h3>
+            <p>Поможет Вам узнать о мерах социальной поддержки</p>
             <b-list-group v-if="messages">
               <b-list-group-item v-for="(msg, index) of messages" :key="index">
                 <p :class="{ 'text-left': msg.isBot, 'text-right': !msg.isBot }">{{msg.text}}</p>
