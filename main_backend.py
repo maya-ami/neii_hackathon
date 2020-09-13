@@ -56,17 +56,6 @@ def sound():
     # # отправляем инфо на сервис синтеза речи (STT)
     s = requests.get('http://0.0.0.0:5555/say?text={}'.format(life_situation))
 
-    # # возвращаем сгенерированный голосовой ответ на фронтенд
-    # return {s.content}
-    # пока не получилось передавать файл синтеза речи в виде бинарника через браузер,
-    # сохраним и воспроизведем файл синтеза речи
-    with open('answer.wav', 'wb') as f:
-        for i in s:
-            f.write(i)
-    cmd = "play answer.wav"
-    subprocess.call([cmd], shell=True)
-
-
     dict1 = [{"text": q.text, "isBot": False}, {"text": life_situation[0][0], "isBot": True}]
     m = MultipartEncoder(fields={ 'messages': json.dumps(dict1), 'files': ("sound.wav", s.content, 'audio/wav') })
     return (m.to_string(), {'Content-Type': m.content_type})
@@ -86,19 +75,6 @@ def text():
 
     # # отправляем инфо на сервис синтеза речи (STT)
     s = requests.get('http://0.0.0.0:5555/say?text={}'.format(life_situation))
-
-    # # возвращаем сгенерированный голосовой ответ на фронтенд
-    # return {s.content}
-    # пока не получилось передавать файл синтеза речи в виде бинарника через браузер,
-    # сохраним и воспроизведем файл синтеза речи
-    # with open('answer.wav', 'wb') as f:
-    #     for i in s:
-    #         f.write(i)
-    # cmd = "play answer.wav"
-    # subprocess.call([cmd], shell=True)
-
-    print(s.content)
-
 
     dict1 = [{"text": life_situation[0][0], "isBot": True}]
     m = MultipartEncoder(fields={ 'messages': json.dumps(dict1), 'files': ("sound.wav", s.content, 'audio/wav') })
