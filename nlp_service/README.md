@@ -1,3 +1,4 @@
+To build an NLU model, we've used an open source framework [Rasa](https://github.com/RasaHQ/rasa).
 - Build
     ```Shell
     docker build -t nlu1.0 .
