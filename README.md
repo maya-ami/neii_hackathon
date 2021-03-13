@@ -1,66 +1,70 @@
-# Решение для хакатона команды НеИИ
+# Top-4 solution for a nation-wide hackathon, "Digital Breakthrough".
 
-Решение состоит из двух частей: голосовой помощник для граждан и сервис проверки обновления нормативных и законодательных актов
-1. Голосовой помощник для получения гражданами информации о полагающейся им социальной помощи.
+Team "НеИИ": built a voice assistant, "Sovet", to make info on social benefits more accessible.
+
+The solution consists of two parts: voice assistant for citizens and a service for checking the updates in legislative documents and notifying social workers about them.
+
+1. A voice assistant informing citizens on social benefits they are entitled to.
 
     ![](scheme.png)
 
-    Система состоит из следующих компонентов:
+    The system consists of:
 
-    - asr_service - Сервис распознавания речи. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/asr_service)
+    - asr_service - a speech recognition service. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/asr_service)
 
-    - nlp_service - Сервис обработки естественного языка. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/nlp_service)
+    - nlp_service - a natural language processing service. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/nlp_service)
 
-    - tts_service - Сервис синтеза речи для обращения системы к пользователю. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/tts_service)
+    - tts_service - a speech synthesis service. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/tts_service)
 
-    - db - База данных, в которой хранится информация о мерах социальной поддержки и необходимых документах для получения соцпомощи. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/db)
+    - database. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/db)
 
-    - клиент [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/client)
+    - frontend prototype [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/client)
 
     ![](frontend_prototype.png)
 
-2. Сервис проверки обновления нормативных и законодательных актов.
+2. A service checking the updates in legislative documents.
 
-    - law_service - Сервис сравнения документов [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/law_service)
-    - doc_db - База данных документов
-    - аnnouncement_client - клиент, уведомляющий сотрудников об изменениях в документах
+    - law_service - a service for comparing texts. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/law_service)
+    - doc_db - a local document database.
+    - notify_sw - an app notifying social workers about the changes in legal documents.
 
 
-# Установка
+# Installation
 
-Представленное решение разработано под ОС Linux.
+Built and tested under Linux OS only.
 
-## 1. Скачивание
+## 1. Download
 
  1a. `git clone https://github.com/maya-ami/neii_hackathon`
- 
- 1b. Также вы можете скачать репозиторий в виде архива и распаковать локально.
 
-## 2. Установка зависимостей
+ 1b. Alternatively, you may download the repo as an archive and unzip it locally.
+
+## 2. Install dependencies
 
 `pip install -r requirements.txt`
 
-*NB*: requirements.txt might be not full!
+*NB*: requirements.txt might be not comprehensive!
 
-## 3. Установка Node.js и npm
+## 3. Install Node.js and npm
 
 ```
 sudo apt-get install nodejs
 sudo apt-get install npm
 ```
-## 4. Запуск микросервисов
 
-Инструкция по установки Docker, необходимого для работы микросервисов - [здесь](https://docs.docker.com/engine/install/).
-Подробная информация о создании Docker образа и его запуске представлена в README.md каждого микросервиса.
+## 4. Start the microservices
 
-## 5. Запуск бекенда
+The microserves are built with Docker. Installation guide can be found [here](https://docs.docker.com/engine/install/).
+Info on how to create and start Docker images can be found in README.md of each service.
+
+## 5. Start the backend
 
 `python3 main_backend.py`
 
-## 6. Запуск фронтенда
+## 6. Start the frontend
 ```
 cd client
 npm install
 npm run serve
 ```
-## 7. Голосовой помощник доступен в браузере по адресу http://localhost:8080/
+## 7. Voice assistant is available at http://localhost:8080/
