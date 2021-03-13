@@ -1,4 +1,4 @@
-# Top-4 solution for a nation-wide hackathon, "Digital Breakthrough".
+# Top-4 solution for a nation-wide hackathon, ["Digital Breakthrough"](https://leadersofdigital.ru/event/63012/case/104504).
 
 Team "НеИИ": built a voice assistant, "Sovet", to make info on social benefits more accessible.
 
