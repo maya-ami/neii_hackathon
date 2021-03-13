@@ -1,13 +1,12 @@
-# Проверка изменения законодательства
+# Tracking changes in social legislation. Проверка изменения законодательства
 
-Концепция:
+Idea:
 
-- Сервис раз в неделю парсит документы Консультан Плюс.
-- Векторизует подгруженный документ. Этот же документ, расположенный в БД соцзащиты, также векторизуется.
-- Рассчитывается расстояние между векторами старого и вновь подгруженного документ.
-- Если расстояние не равно единице, заключаем, что версия документа в Консультант Плюс изменилась.
-- Оповещаем сотрудника соцзащиты об изменение конкретного документа.
+- The service parses the website containing legal documents once a week.
+- Vectorize an updated and a local versions of the document.
+- Compute the distance between the two document vectors.
+- Unless the distance equals 1, notify a social worker about the changes.
 
-## Запуск
+## Usage
 
 python3 detect_document_changes.py local.txt updated.txt

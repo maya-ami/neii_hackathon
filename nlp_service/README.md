@@ -1,14 +1,15 @@
-- Запуск
+- Build
     ```Shell
     docker build -t nlu1.0 .
     docker run -d -p 8888:8888 nlu1.0
     ```
-- Пример
+- Usage
     ```
     http://localhost:8888/chat?text=у меня скоро родится второй ребенок. какие льготы положены>
     ```
 
-- Параметры
+- Parameters
 
-    text - строка, распознанная [vosk](https://alphacephei.com/vosk/server)    
-    Результат - ключевое слово для поиска в БД
+    text - строка, распознанная [vosk](https://alphacephei.com/vosk/server)
+
+- Returns a keyword describing the class of social benefits (maternal, retired, disabled, etc.)

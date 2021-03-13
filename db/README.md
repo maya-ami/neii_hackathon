@@ -1,15 +1,16 @@
-- Платформа
+- Framework used:
     [Sqlite](https://www.sqlite.org/index.html)
-- Запуск
+- Build
     ```shell
     sudo docker build build --tag db_serv:v1 .
-    sudo docker run --publish 7777:7777 --name db_serv:v1 
+    sudo docker run --publish 7777:7777 --name db_serv:v1
     ```
-- Пример
+- Usage
     ```
     http://localhost:7777/get_answer?text=key_word
     ```
-- Параметры
+- Parameters
 
-    key_word - ключевое слово, полученное с [nlp_service](https://github.com/maya-ami/neii_hackathon/blob/master/nlp_service)
-    результат - ответ о положенных льготах и компенсациях, список  документов, необходимых для получения льготы/компенсации
+    key_word - an answer of the [nlp_service](https://github.com/maya-ami/neii_hackathon/blob/master/nlp_service).
+
+- Returns info on statutory benefits and the documents a person needs to provide to claim the benefits.
