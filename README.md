@@ -2,6 +2,8 @@
 
 Team "НеИИ": built a voice assistant, "Sovet", to make info on social benefits more accessible.
 
+Ideas and results are presented in the [slides](presentation.pdf).
+
 The solution consists of two parts: voice assistant for citizens and a service for checking the updates in legislative documents and notifying social workers about them.
 
 1. A voice assistant informing citizens on social benefits they are entitled to.
