@@ -1,8 +1,10 @@
 # Top-4 solution for a nation-wide hackathon, ["Digital Breakthrough"](https://leadersofdigital.ru/event/63012/case/104504).
 
-Team "НеИИ": built a voice assistant, "Sovet", to make info on social benefits more accessible.
+**Team "НеИИ"** created a voice assistant, "Sovet", to make info on social benefits more accessible.
 
 Ideas and results are presented in the [slides](presentation.pdf).
+
+Demo of a social voice assistant is available [here](https://drive.google.com/file/d/1c-DMg7Pho2HCpB-bfoPHThJiOATzO7fP/view).
 
 The solution consists of two parts: voice assistant for citizens and a service for checking the updates in legislative documents and notifying social workers about them.
 
