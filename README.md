@@ -10,21 +10,21 @@ The solution consists of two parts: voice assistant for citizens and a service f
 
     The system consists of:
 
-    - asr_service - a speech recognition service. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/asr_service)
+    - asr_service - a speech recognition service. [More](https://github.com/maya-ami/neii_hackathon/tree/master/asr_service)
 
-    - nlp_service - a natural language processing service. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/nlp_service)
+    - nlp_service - a natural language processing service. [More](https://github.com/maya-ami/neii_hackathon/tree/master/nlp_service)
 
-    - tts_service - a speech synthesis service. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/tts_service)
+    - tts_service - a speech synthesis service. [More](https://github.com/maya-ami/neii_hackathon/tree/master/tts_service)
 
-    - database. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/db)
+    - database. [More](https://github.com/maya-ami/neii_hackathon/tree/master/db)
 
-    - frontend prototype [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/client)
+    - frontend prototype [More](https://github.com/maya-ami/neii_hackathon/tree/master/client)
 
     ![](frontend_prototype.png)
 
 2. A service checking the updates in legislative documents.
 
-    - law_service - a service for comparing texts. [Подробнее](https://github.com/maya-ami/neii_hackathon/tree/master/law_service)
+    - law_service - a service for comparing texts. [More](https://github.com/maya-ami/neii_hackathon/tree/master/law_service)
     - doc_db - a local document database.
     - notify_sw - an app notifying social workers about the changes in legal documents.
 
