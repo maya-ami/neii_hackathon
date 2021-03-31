@@ -11,6 +11,6 @@ To build an NLU model, we've used an open source framework [Rasa](https://github
 
 - Parameters
 
-    text - строка, распознанная [vosk](https://alphacephei.com/vosk/server)
+    text - a string recognized by [vosk](https://alphacephei.com/vosk/server)
 
 - Returns a keyword describing the class of social benefits (maternal, retired, disabled, etc.)
