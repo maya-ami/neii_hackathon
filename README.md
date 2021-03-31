@@ -39,7 +39,7 @@ Built and tested under Linux OS only.
 
 ## 1. Download
 
- 1a. `git clone https://github.com/maya-ami/neii_hackathon`
+ 1a. `git clone https://github.com/maya-ami/social_voice_assistant`
 
  1b. Alternatively, you may download the repo as an archive and unzip it locally.
 
